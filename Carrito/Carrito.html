@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Ventas</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .total { font-weight: bold; }
+        button { padding: 5px 10px; margin: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Carrito de Ventas</h1>
+    <table id="carrito">
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Aquí se agregarán los productos dinámicamente -->
+        </tbody>
+    </table>
+    <p class="total">Total: $<span id="total">0.00</span></p>
+    <button onclick="vaciarCarrito()">Vaciar Carrito</button>
+    <button onclick="finalizarCompra()">Finalizar Compra</button>
+
+    <script>
+        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+        const carritoTable = document.getElementById('carrito').querySelector('tbody');
+        const totalSpan = document.getElementById('total');
+
+        function actualizarCarrito() {
+            carritoTable.innerHTML = '';
+            let total = 0;
+            carrito.forEach((item, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${item.nombre}</td>
+                    <td>$${item.precio.toFixed(2)}</td>
+                    <td><input type="number" value="${item.cantidad}" min="1" onchange="cambiarCantidad(${index}, this.value)"></td>
+                    <td>$${(item.precio * item.cantidad).toFixed(2)}</td>
+                    <td><button onclick="eliminarProducto(${index})">Eliminar</button></td>
+                `;
+                carritoTable.appendChild(row);
+                total += item.precio * item.cantidad;
+            });
+            totalSpan.textContent = total.toFixed(2);
+            localStorage.setItem('carrito', JSON.stringify(carrito));
+        }
+
+        function cambiarCantidad(index, cantidad) {
+            carrito[index].cantidad = parseInt(cantidad);
+            actualizarCarrito();
+        }
+
+        function eliminarProducto(index) {
+            carrito.splice(index, 1);
+            actualizarCarrito();
+        }
+
+        function vaciarCarrito() {
+            carrito = [];
+            actualizarCarrito();
+        }
+
+        function finalizarCompra() {
+            alert('Compra finalizada. Total: $' + totalSpan.textContent);
+            vaciarCarrito();
+        }
+
+        actualizarCarrito();
+    </script>
+</body>
+</html>
