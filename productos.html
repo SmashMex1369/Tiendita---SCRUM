@@ -33,23 +33,14 @@
 
 	<main>
 		<h2 class="productos-title">Productos</h2>
+
 		<button class="add-product-btn">AGREGAR NUEVO PRODUCTO</button>
-		<section class="productos-grid">
-			<!-- Ejemplo de producto, repite este bloque para cada producto -->
-			<div class="producto-card">
-				<div class="producto-nombre">Azucar</div>
-				<div class="producto-precio">$80.00</div>
-				<div class="producto-disponible">Disponible: 2</div>
-				<button class="producto-add">+</button>
-			</div>
-			<div class="producto-card">
-				<div class="producto-nombre">Frijoles</div>
-				<div class="producto-precio">$18.00</div>
-				<div class="producto-disponible">Disponible: 2</div>
-				<button class="producto-add">+</button>
-			</div>
-			<!-- Más productos aquí, solo copia el bloque de arriba cambiando los datos -->
+
+		<!-- 🔹 Aquí se cargarán los productos dinámicamente -->
+		<section class="productos-grid" id="productos-container">
+			<!-- JS va a insertar aquí los productos -->
 		</section>
 	</main>
+	<script src="productos.js"></script>
 </body>
 </html>
