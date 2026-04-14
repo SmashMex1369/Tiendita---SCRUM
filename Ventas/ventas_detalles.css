@@ -1,1 +1,99 @@
-﻿
+﻿body {
+    font-family: Arial, sans-serif;
+    background: #0f172a;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 90%;
+    margin: auto;
+    margin-top: 40px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* FORMULARIO */
+.formulario {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.formulario input {
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+}
+
+.formulario button {
+    padding: 10px 20px;
+    background: #22c55e;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.formulario button:hover {
+    background: #16a34a;
+}
+
+/* TABLA */
+.tabla-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #1e293b;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+}
+
+th {
+    background: #334155;
+}
+
+tr:nth-child(even) {
+    background: #1e293b;
+}
+
+tr:nth-child(odd) {
+    background: #0f172a;
+}
+
+/* BOTONES */
+a {
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    color: white;
+    margin: 2px;
+}
+
+a[href*="editar"] {
+    background: #3b82f6;
+}
+
+a[href*="eliminar"] {
+    background: #ef4444;
+}
+
+a:hover {
+    opacity: 0.8;
+}
